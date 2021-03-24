@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         YouTube autolike
-// @namespace    http://tampermonkey.net/
+// @namespace    https://github.com/blackstar0169/youtube-autolike-script
 // @version      1.1
 // @description  Auto-like YouTube video if you are subscribed to the author's channel.
-// @author       You
+// @author       blackstar0169
 // @match        https://www.youtube.com/watch*
 // @grant        none
 // ==/UserScript==
