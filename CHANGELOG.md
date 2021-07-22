@@ -15,3 +15,8 @@ The script is now on my Github page.
 
 Change the match meta from "https://www.youtube.com/watch*" to "https://www.youtube.com/*" because
 YT use a JS router and the script was not loaded if you go to a video from the YT home page.
+
+# 1.3
+
+Change the like button query selector to match the new one.
+Better page navigation handeling.
