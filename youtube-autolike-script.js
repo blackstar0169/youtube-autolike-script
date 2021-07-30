@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         YouTube autolike
 // @namespace    https://github.com/blackstar0169/youtube-autolike-script
-// @version      1.3
+// @version      1.4
 // @description  Auto-like YouTube video if you are subscribed to the author's channel.
 // @author       blackstar0169
 // @match        https://www.youtube.com/*
@@ -13,7 +13,7 @@
 
     var watcher = null;
     var likeSelector = '#info-contents #menu ytd-toggle-button-renderer:first-child > a';
-    var subscribeSelector = '.ytd-subscribe-button-renderer';
+    var subscribeSelector = '#meta-contents .ytd-subscribe-button-renderer';
 
     // Check if the video is already liked
     function isLiked() {
@@ -21,11 +21,12 @@
         return likeBtn ? likeBtn.querySelector(':scope > .style-default-active') != null : false;
     }
 
+    // Try to click on the like button. Return true un success
     function autoLike() {
         var subscribeBtn = document.querySelector(subscribeSelector + '[subscribed]');
 
         // If the button exsits, the user is subscribed to this channel
-        if (subscribeBtn) {
+        if (subscribeBtn && isVisible(subscribeBtn)) {
             var likeBtn = document.querySelector(likeSelector);
 
             if (likeBtn && !isLiked()) {
@@ -35,6 +36,11 @@
         }
 
         return false;
+    }
+
+    // jQuery 3.6.0 implementation of `visible` function
+    function isVisible(el) {
+        return !!( el.offsetWidth || el.offsetHeight || el.getClientRects().length );
     }
 
     // Watch untile the like button has or has been pressed
