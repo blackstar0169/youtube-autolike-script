@@ -26,3 +26,7 @@ it doesn't have time to find the like button in the DOM.
 - Change the query selector of the subscribe button to match the good one that is displayed and check its
 visibility. That fix the issue that could like a video even if you are not subscribed to the channel.
 - Update changelog layout
+
+## 1.5
+
+- Update code to pake it works with the new YT interface
