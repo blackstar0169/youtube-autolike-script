@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         YouTube autolike
 // @namespace    https://github.com/blackstar0169/youtube-autolike-script
-// @version      1.4
+// @version      1.5
 // @description  Auto-like YouTube video if you are subscribed to the author's channel.
 // @author       blackstar0169
 // @match        https://www.youtube.com/*
@@ -12,21 +12,43 @@
     'use strict';
 
     var watcher = null;
-    var likeSelector = '#info-contents #menu ytd-toggle-button-renderer:first-child > a';
-    var subscribeSelector = '#meta-contents .ytd-subscribe-button-renderer';
+    var likeSelector = '#segmented-like-button button';
+    var subscribeSelector = '#subscribe-button button';
+
+    function getObjectProperty(obj, keyStr) {
+        var keys = keyStr.split('.');
+
+        for (var i = 0; i < keys.length; i++) {
+            var key = keys[i];
+            if (obj && Array.isArray(obj)) {
+                key = parseInt(key);
+                if (isNaN(key) || typeof obj[key] === 'undefined') {
+                    return undefined;
+                }
+            } else if (!obj || !obj.hasOwnProperty(key)) {
+                return undefined;
+            }
+            obj = obj[key];
+        }
+        return obj;
+    }
 
     // Check if the video is already liked
     function isLiked() {
-        var likeBtn = document.querySelector(likeSelector);
-        return likeBtn ? likeBtn.querySelector(':scope > .style-default-active') != null : false;
+        var btn = document.querySelector(likeSelector);
+        return btn ? btn.getAttribute('aria-pressed') == 'true' : false;
+    }
+
+    function isSubscribed() {
+        var btn = document.querySelector(subscribeSelector);
+        return (btn && btn.classList.contains('yt-spec-button-shape-next--tonal')) ||
+            getObjectProperty(window.ytInitialPlayerResponse, 'annotations.0.playerAnnotationsExpandedRenderer.featuredChannel.subscribeButton.subscribeButtonRenderer.subscribed');
     }
 
     // Try to click on the like button. Return true un success
     function autoLike() {
-        var subscribeBtn = document.querySelector(subscribeSelector + '[subscribed]');
-
-        // If the button exsits, the user is subscribed to this channel
-        if (subscribeBtn && isVisible(subscribeBtn)) {
+        // If the user is subscribed to this channel
+        if (isSubscribed()) {
             var likeBtn = document.querySelector(likeSelector);
 
             if (likeBtn && !isLiked()) {
