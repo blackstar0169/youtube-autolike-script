@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         YouTube autolike
 // @namespace    https://github.com/blackstar0169/youtube-autolike-script
-// @version      1.5
+// @version      1.6
 // @description  Auto-like YouTube video if you are subscribed to the author's channel.
 // @author       blackstar0169
 // @match        https://www.youtube.com/*
