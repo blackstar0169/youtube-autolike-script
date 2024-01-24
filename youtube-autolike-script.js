@@ -12,7 +12,7 @@
     'use strict';
 
     var watcher = null;
-    var likeSelector = '#segmented-like-button button';
+    var likeSelector = '.YtLikeButtonViewModelHost button';
     var subscribeSelector = '#subscribe-button button';
 
     function getObjectProperty(obj, keyStr) {
