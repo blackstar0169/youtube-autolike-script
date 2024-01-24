@@ -34,3 +34,8 @@ visibility. That fix the issue that could like a video even if you are not subsc
 ## 1.6
 
 - Update like button query selector to make it works with the new YT interface
+
+## 1.7
+
+- Add an option interface
+- Add a license

@@ -1,11 +1,18 @@
 // ==UserScript==
 // @name         YouTube autolike
 // @namespace    https://github.com/blackstar0169/youtube-autolike-script
-// @version      1.6
-// @description  Auto-like YouTube video if you are subscribed to the author's channel.
+// @version      1.7
+// @description  Auto-like YouTube video if you are subscribed to the author's channel. Or can set an option to like all videos regardless if you are subrscribed or not.
 // @author       blackstar0169
 // @match        https://www.youtube.com/*
-// @grant        none
+// @grant        GM_getValue
+// @grant        GM_setValue
+// @grant        GM_addStyle
+// @grant        GM_registerMenuCommand
+// @license      CC-BY-NC-SA-4.0
+// @downloadURL https://update.greasyfork.org/scripts/423125/YouTube%20autolike.user.js
+// @updateURL https://update.greasyfork.org/scripts/423125/YouTube%20autolike.meta.js
+// @require        https://raw.github.com/odyniec/MonkeyConfig/master/monkeyconfig.js
 // ==/UserScript==
 
 (function() {
@@ -14,6 +21,18 @@
     var watcher = null;
     var likeSelector = '.YtLikeButtonViewModelHost button';
     var subscribeSelector = '#subscribe-button button';
+
+    // Config
+    const config = new MonkeyConfig({
+        title: 'YouTube autolike Configuration',
+        menuCommand: true,
+        params: {
+            like_all_videos: {
+                type: 'checkbox',
+                default: false
+            }
+        }
+    });
 
     function getObjectProperty(obj, keyStr) {
         var keys = keyStr.split('.');
@@ -48,7 +67,8 @@
     // Try to click on the like button. Return true un success
     function autoLike() {
         // If the user is subscribed to this channel
-        if (isSubscribed()) {
+        const likeAllVideos = config.get('like_all_videos');
+        if (isSubscribed() || likeAllVideos) {
             var likeBtn = document.querySelector(likeSelector);
 
             if (likeBtn && !isLiked()) {
@@ -58,11 +78,6 @@
         }
 
         return false;
-    }
-
-    // jQuery 3.6.0 implementation of `visible` function
-    function isVisible(el) {
-        return !!( el.offsetWidth || el.offsetHeight || el.getClientRects().length );
     }
 
     // Watch untile the like button has or has been pressed
