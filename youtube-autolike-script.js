@@ -10,9 +10,9 @@
 // @grant        GM_addStyle
 // @grant        GM_registerMenuCommand
 // @license      CC-BY-NC-SA-4.0
-// @downloadURL https://update.greasyfork.org/scripts/423125/YouTube%20autolike.user.js
-// @updateURL https://update.greasyfork.org/scripts/423125/YouTube%20autolike.meta.js
-// @require        https://raw.github.com/odyniec/MonkeyConfig/master/monkeyconfig.js
+// @downloadURL  https://update.greasyfork.org/scripts/423125/YouTube%20autolike.user.js
+// @updateURL    https://update.greasyfork.org/scripts/423125/YouTube%20autolike.meta.js
+// @require      https://raw.github.com/odyniec/MonkeyConfig/master/monkeyconfig.js#sha256=65494c58e6b9f19e7f62683a1b352a943d58c59f6c2ecb184ac422934d48281f
 // ==/UserScript==
 
 (function() {
