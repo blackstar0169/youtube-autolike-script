@@ -39,3 +39,9 @@ visibility. That fix the issue that could like a video even if you are not subsc
 
 - Add an option interface
 - Add a license
+
+## 1.8
+
+- Fix issue [#1](https://github.com/blackstar0169/youtube-autolike-script/issues/1)
+- Update like button query selector to make it works with the new YT interface
+- Change the MonkeyConfig script source for my forked one to fix security errors
