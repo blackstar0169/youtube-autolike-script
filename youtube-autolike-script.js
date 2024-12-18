@@ -12,7 +12,7 @@
 // @license      CC-BY-NC-SA-4.0
 // @downloadURL  https://update.greasyfork.org/scripts/423125/YouTube%20autolike.user.js
 // @updateURL    https://update.greasyfork.org/scripts/423125/YouTube%20autolike.meta.js
-// @require      https://raw.github.com/blackstar0169/MonkeyConfig/master/monkeyconfig.js
+// @require      https://raw.github.com/blackstar0169/MonkeyConfig/master/monkeyconfig.js#sha256-c21c7ca843565925c3f3ba8cf178ac248a8d60d1bcef1c5f30f6237ea9763bd7
 // ==/UserScript==
 
 (function() {
